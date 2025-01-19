@@ -16,16 +16,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Debug: Verifying the password hash
-        $passVerify = password_verify($password, $user['password']);
-        // Verify the password
-        if ($user && $passVerify) {
-            // Password is correct; set session and redirect
-            $_SESSION['user'] = $user;
-            header("Location: play.php");
-            exit;
+        // Ensure that the user was found
+        if ($user) {
+            // Verifying the password hash
+            if (isset($user['password']) && !empty($user['password'])) {
+                $passVerify = password_verify($password, $user['password']);
+                if ($passVerify) {
+                    // Password is correct; set session and redirect
+                    $_SESSION['user'] = $user;
+                    header("Location: play.php");
+                    exit;
+                } else {
+                    $message = 'Invalid username or password.';
+                }
+            } else {
+                $message = 'User not found or password is not set.';
+            }
         } else {
-            $message = 'Invalid username or password.';
+            $message = 'No user found with that username.';
         }
     } catch (PDOException $e) {
         // Log error and display a generic message
