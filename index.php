@@ -1,62 +1,70 @@
-<?php
-session_start();
-if (!isset($_SESSION['user'])) {
-    header("Location: login.php");
-    exit;
-}
-
-$user = $_SESSION['user'];
-?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Game</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Animcal Clciker</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .button {
+                width: 80%;
+                padding: 12px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h2>Welcome, <?php echo htmlspecialchars($user['username']); ?>!</h2>
-        <a href="logout.php" class="logout">Logout</a>
-    </header>
+    <h1>Welcome to Animal Clicker!</h1>
 
-    <div id="userId" data-user-id="<?php echo htmlspecialchars($user['id']); ?>"></div>
-
-    <div class="leaderboard-container"></div>
-
-
-    <h2 class="counter">Level: 1</h2>
-    <p id="level-up-message"></p>
-
-    <div class="init">
-        <div class="center1">
-            <h1>WE NEED YOU!</h1>
-            <p>Click on each square to raise a cat. You must hurry or the dogs will colonize us!</p>
-            <p class="floating bold">START GAME</p>
-        </div>
+    <div class="button-container">
+        <a href="login.php" class="button">Login</a>
+        <a href="register.php" class="button">Registration</a>
     </div>
-
-    <div class="won">
-        <div class="center">
-            <h1>CATS RULE BABE!</h1>
-            <p class="floating replay bold">Let's Fight for CATS again</p>
-            <p class="time-taken">Time Taken: <span id="time"></span></p>
-        </div>
-    </div>
-
-    <div class="init hidden"><h1 class="center">INCREASED VELOCITY!</h1></div>
-
-    <div class="container">
-        <div class="game"></div>
-    </div>
-
-    <div class="lost">
-        <div class="center">
-            <h1>Meow LOST!</h1>
-            <p class="floating replay bold" onclick="tryAgain()">Try Again</p>
-        </div>
-    </div>
-
-    <script type="text/javascript" src="game.js"></script>
 </body>
 </html>
