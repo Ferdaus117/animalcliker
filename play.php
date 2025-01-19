@@ -61,7 +61,7 @@ $user = $_SESSION['user'];
     <header>
         <h2>Welcome, <?php echo htmlspecialchars($user['username']); ?>!</h2>
         <div class="navbar">
-            <a href="profile.php"><?php echo htmlspecialchars($user['username']); ?>'s Profile</a>
+            <a href="#"><?php echo htmlspecialchars($user['username']); ?>'s Profile</a>
             <a href="logout.php" class="logout">Logout</a>
         </div>
     </header>

@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } catch (PDOException $e) {
         // Log error and display a generic message
-        error_log('Database Error: ' . $e->getMessage());
+        //error_log('Database Error: ' . $e->getMessage());
         $message = 'An error occurred. Please try again later.';
     }
 }
